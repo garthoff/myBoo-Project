@@ -102,5 +102,5 @@ public class MyBooProjectAboutBox extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
     // End of variables declaration//GEN-END:variables
-    
+
 }

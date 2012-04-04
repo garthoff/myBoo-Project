@@ -101,6 +101,10 @@ public class MyBooProjectView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
+        btnGreen = new javax.swing.JToggleButton();
+        btnYellow = new javax.swing.JToggleButton();
+        btnRed = new javax.swing.JToggleButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -114,24 +118,57 @@ public class MyBooProjectView extends FrameView {
 
         mainPanel.setName("mainPanel"); // NOI18N
 
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(mybooproject.MyBooProjectApp.class).getContext().getActionMap(MyBooProjectView.class, this);
+        btnGreen.setAction(actionMap.get("lightLEDGreen")); // NOI18N
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(mybooproject.MyBooProjectApp.class).getContext().getResourceMap(MyBooProjectView.class);
+        btnGreen.setText(resourceMap.getString("btnGreen.text")); // NOI18N
+        btnGreen.setName("btnGreen"); // NOI18N
+
+        btnYellow.setAction(actionMap.get("lightLEDYellow")); // NOI18N
+        btnYellow.setText(resourceMap.getString("btnYellow.text")); // NOI18N
+        btnYellow.setName("btnYellow"); // NOI18N
+
+        btnRed.setAction(actionMap.get("lightLEDRed")); // NOI18N
+        btnRed.setText(resourceMap.getString("btnRed.text")); // NOI18N
+        btnRed.setName("btnRed"); // NOI18N
+
+        jToggleButton1.setAction(actionMap.get("turnOffLEDGreen")); // NOI18N
+        jToggleButton1.setName("jToggleButton1"); // NOI18N
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 400, Short.MAX_VALUE)
+            .add(mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(btnGreen)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(btnYellow)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(btnRed))
+                    .add(jToggleButton1))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 252, Short.MAX_VALUE)
+            .add(mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(btnGreen)
+                    .add(btnYellow)
+                    .add(btnRed))
+                .add(76, 76, 76)
+                .add(jToggleButton1)
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         menuBar.setName("menuBar"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(mybooproject.MyBooProjectApp.class).getContext().getResourceMap(MyBooProjectView.class);
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(mybooproject.MyBooProjectApp.class).getContext().getActionMap(MyBooProjectView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
@@ -162,11 +199,11 @@ public class MyBooProjectView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 226, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 74, Short.MAX_VALUE)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(statusAnimationLabel)
@@ -190,6 +227,10 @@ public class MyBooProjectView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnGreen;
+    private javax.swing.JToggleButton btnRed;
+    private javax.swing.JToggleButton btnYellow;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;

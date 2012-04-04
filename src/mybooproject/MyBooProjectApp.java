@@ -4,6 +4,7 @@
 
 package mybooproject;
 
+import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 import gnu.io.*;
@@ -44,5 +45,47 @@ public class MyBooProjectApp extends SingleFrameApplication {
         
 	System.out.println("Started");
         launch(MyBooProjectApp.class, args);
+    }
+
+    @Action
+    public void lightLEDGreen() {
+        ArduinoActions.getInstance().setInstrution(3);
+        System.out.println("J'allume la LED Verte");
+        
+    }
+    
+    @Action
+    public void lightLEDRed() {
+        ArduinoActions.getInstance().setInstrution(1);
+        System.out.println("J'allume la LED Rouge");
+        
+    }
+    
+    @Action
+    public void lightLEDYellow() {
+        ArduinoActions.getInstance().setInstrution(2);
+        System.out.println("J'allume la LED Jaune");
+        
+    }
+    
+    @Action
+    public void turnOffLEDGreen() {
+        ArduinoActions.getInstance().setInstrution(4);
+        System.out.println("J'éteind la LED Verte");
+        
+    }
+    
+    @Action
+    public void turnOffLEDRed() {
+        ArduinoActions.getInstance().setInstrution(5);
+        System.out.println("J'éteind la LED Rouge");
+        
+    }
+    
+    @Action
+    public void turnOffLEDYellow() {
+        ArduinoActions.getInstance().setInstrution(6);
+        System.out.println("J'éteind la LED Jaune");
+        
     }
 }

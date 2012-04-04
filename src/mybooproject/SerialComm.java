@@ -8,6 +8,8 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SerialComm {
 
@@ -71,7 +73,7 @@ public class SerialComm {
     /** */
     public static class SerialWriter implements Runnable {
 
-        OutputStream out;
+        public OutputStream out;
 
         public SerialWriter(OutputStream out) {
             this.out = out;
@@ -79,9 +81,25 @@ public class SerialComm {
 
         public void run() {
             try {
-                int c = 0;
-                while ((c = System.in.read()) > -1) {
-                    this.out.write(c);
+                int c = -9;
+                while (true) {
+                    if ((c = ArduinoActions.getInstance().getInstruction()) == -9)
+                    {
+                        try {
+                            //ArduinoActions.getInstance().setInstrution(-99);
+                            Thread.sleep(200);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(SerialComm.class.getName()).log(Level.SEVERE, null, ex);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        this.out.write(c);
+                        System.out.print(c);
+                        ArduinoActions.getInstance().setInstrution(-9);
+                    }
+                    
                 }
             } catch (IOException e) {
                 e.printStackTrace();
