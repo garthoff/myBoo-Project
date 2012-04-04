@@ -6,6 +6,8 @@ package mybooproject;
 
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
+import gnu.io.*;
+import java.io.IOException;
 
 /**
  * The main class of the application.
@@ -35,10 +37,12 @@ public class MyBooProjectApp extends SingleFrameApplication {
         return Application.getInstance(MyBooProjectApp.class);
     }
 
-    /**
-     * Main method launching the application.
-     */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, Exception {
+        // TODO code application logic here
+        SerialComm main = new SerialComm();
+	main.connect("/dev/tty.usbmodem1d11");
+        
+	System.out.println("Started");
         launch(MyBooProjectApp.class, args);
     }
 }
