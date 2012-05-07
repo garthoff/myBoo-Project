@@ -41,10 +41,13 @@ public class MyBooProjectApp extends SingleFrameApplication {
     public static void main(String[] args) throws IOException, Exception {
         // TODO code application logic here
         SerialComm main = new SerialComm();
-	main.connect("/dev/tty.usbmodem1d11");
+	main.connect("/dev/tty.usbmodem1a21");
         
 	System.out.println("Started");
         launch(MyBooProjectApp.class, args);
+        MyBooNeeds.getInstance().food();
+        MyBooNeeds.getInstance().pooh();
+        MyBooNeeds.getInstance().poohMaker();
     }
 
     @Action
