@@ -15,13 +15,20 @@ import java.io.IOException;
  */
 public class MyBooProjectApp extends SingleFrameApplication {
 
+    private MyBooProjectView mainView;
+    
     /**
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-        show(new MyBooProjectView(this));
+        show(mainView = new MyBooProjectView(this));
     }
 
+    public MyBooProjectView getMainAppView()
+    {
+        return this.mainView;
+    }
+    
     /**
      * This method is to initialize the specified window by injecting resources.
      * Windows shown in our application come fully initialized from the GUI
@@ -48,6 +55,8 @@ public class MyBooProjectApp extends SingleFrameApplication {
         MyBooNeeds.getInstance().food();
         MyBooNeeds.getInstance().pooh();
         MyBooNeeds.getInstance().poohMaker();
+        MyBooNeeds.getInstance().game();
+        MyBooNeeds.getInstance().imgAutoUpdater();
     }
 
     @Action

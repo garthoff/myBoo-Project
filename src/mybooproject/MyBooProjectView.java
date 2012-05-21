@@ -4,6 +4,11 @@
 
 package mybooproject;
 
+import java.awt.Color;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -11,16 +16,24 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.Timer;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * The application's main frame.
  */
 public class MyBooProjectView extends FrameView {
 
+    ImageIcon imgOK = new ImageIcon("/Users/renaudjenny/NetBeansProjects/myBoo-Project/ok.png");
+    ImageIcon imgPooh = new ImageIcon("/Users/renaudjenny/NetBeansProjects/myBoo-Project/pooh.png");
+    ImageIcon imgFood = new ImageIcon("/Users/renaudjenny/NetBeansProjects/myBoo-Project/food.png");
+    ImageIcon imgPlay = new ImageIcon("/Users/renaudjenny/NetBeansProjects/myBoo-Project/play.png");
+    
     public MyBooProjectView(SingleFrameApplication app) {
         super(app);
 
@@ -79,6 +92,7 @@ public class MyBooProjectView extends FrameView {
                 }
             }
         });
+        jLabel1.setIcon(this.imgOK);
     }
 
     @Action
@@ -105,6 +119,8 @@ public class MyBooProjectView extends FrameView {
         btnYellow = new javax.swing.JToggleButton();
         btnRed = new javax.swing.JToggleButton();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -132,36 +148,68 @@ public class MyBooProjectView extends FrameView {
         btnRed.setText(resourceMap.getString("btnRed.text")); // NOI18N
         btnRed.setName("btnRed"); // NOI18N
 
-        jToggleButton1.setAction(actionMap.get("turnOffLEDGreen")); // NOI18N
+        jToggleButton1.setText(resourceMap.getString("jToggleButton1.text")); // NOI18N
         jToggleButton1.setName("jToggleButton1"); // NOI18N
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setName("jPanel1"); // NOI18N
+
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+        );
 
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanelLayout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(mainPanelLayout.createSequentialGroup()
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                        .add(mainPanelLayout.createSequentialGroup()
+                            .add(btnRed)
+                            .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
+                            .add(jToggleButton1)
+                            .addContainerGap()))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
                         .add(btnGreen)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .addContainerGap())
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
                         .add(btnYellow)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(btnRed))
-                    .add(jToggleButton1))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(btnGreen)
-                    .add(btnYellow)
-                    .add(btnRed))
-                .add(76, 76, 76)
-                .add(jToggleButton1)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(btnRed)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(btnYellow)
+                        .add(2, 2, 2)
+                        .add(btnGreen)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 434, Short.MAX_VALUE)
+                        .add(jToggleButton1)))
+                .addContainerGap())
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -199,11 +247,11 @@ public class MyBooProjectView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 572, Short.MAX_VALUE)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(statusAnimationLabel)
@@ -226,10 +274,23 @@ public class MyBooProjectView extends FrameView {
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        File gameProg = new File("/Users/renaudjenny/NetBeansProjects/chifoumi/dist/chifoumi.jar");
+        Desktop desktop = Desktop.getDesktop();
+        try {
+            desktop.open(gameProg);
+        } catch (IOException ex) {
+            Logger.getLogger(MyBooProjectView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnGreen;
     private javax.swing.JToggleButton btnRed;
     private javax.swing.JToggleButton btnYellow;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
@@ -246,4 +307,24 @@ public class MyBooProjectView extends FrameView {
     private int busyIconIndex = 0;
 
     private JDialog aboutBox;
+    
+    public void setImg(String img)
+    {
+        if (img.equals("ok"))
+        {
+            jLabel1.setIcon(this.imgOK);
+        }
+        else if (img.equals("pooh"))
+        {
+            jLabel1.setIcon(this.imgPooh);
+        }
+        else if (img.equals("food"))
+        {
+            jLabel1.setIcon(this.imgFood);
+        }
+        else if (img.equals("play"))
+        {
+            jLabel1.setIcon(this.imgPlay);
+        }
+    }
 }

@@ -2,3 +2,5 @@ build
 nbproject/private/private.xml
 nbproject/build-impl.xml
 nbproject/genfiles.properties
+src/mybooproject/resources/MyBooProjectView.properties
+.DS_Store

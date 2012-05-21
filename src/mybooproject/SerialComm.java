@@ -86,7 +86,6 @@ public class SerialComm {
                     if ((c = ArduinoActions.getInstance().getInstruction()) == -9)
                     {
                         try {
-                            //ArduinoActions.getInstance().setInstrution(-99);
                             Thread.sleep(200);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(SerialComm.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,7 +95,6 @@ public class SerialComm {
                     else
                     {
                         this.out.write(c);
-                        System.out.print(c);
                         ArduinoActions.getInstance().setInstrution(-9);
                     }
                     
